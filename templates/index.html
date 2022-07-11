@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock title %}
+
+{% block content %}
+    <h3>Add Todo</h3>
+
+    <form action="/add" method="POST">
+        <fieldset>
+            <label for="title">Title</label>
+            <input type="text" placeholder="Read Book" id="title" name="title">
+            <label for="description">Description</label>
+            <textarea cols="30" rows="60" placeholder="Read 10 pages of Rich Dad Poor ... " id="description" name="description" ></textarea>
+            <input class="button-primary" type="submit" value="Send">
+        </fieldset>
+    </form>
+    
+
+    <table>
+        <thead>
+            <tr>
+                <th>SNo</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for todo in todos %}
+                <tr>
+                    <!-- <td>{{ todo.id }}</td> -->
+                    <td>{{ loop.index }}</td>
+                    <td><a href="/edit/{{todo.id}}">{{ todo.title }}</a></td>
+                    <td>{{ todo.description }}</td>
+                    {% if todo.is_completed == False %}
+                        <td><a href="/update/{{ todo.id }}" class="button ">Not Completed</a> | <a class="button btn-delete" href="/delete/{{ todo.id }}">Delete</a></td>
+                    {% else %}
+                        <td><a href="#" class="button btn-success">Completed</a> | <a class="button btn-delete" href="/delete/{{ todo.id }}">Delete</a></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
