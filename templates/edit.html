@@ -1,7 +1,4 @@
 {% extends 'base.html' %}
-{% block title %}
-    Edit
-{% endblock title %}
 {% block content %}
 
     <h3>Edit Todo</h3>
@@ -11,7 +8,7 @@
             <input type="text" id="title" name="title" value="{{todo.title}}">
             <label for="description">Description</label>
             <textarea id="description" name="description">{{todo.description}}</textarea>
-            <input class="button-primary" type="submit" value="Send">
+            <input class="button-primary" type="submit" value="Send"> <span><a href="{{ url_for('home') }}" class="button btn-back">Back</a></span>
         </fieldset>
     </form>
 
